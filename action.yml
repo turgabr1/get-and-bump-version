@@ -1,0 +1,20 @@
+# action.yml
+name: 'Get and Bump version'
+author: turgabr1
+description: 'Get the version from specified file in the project and bump it using bump2version'
+inputs:
+  file_path:  # id of input
+    description: 'Path to version file considering you are at project root'
+    required: true
+  bumpversion_part:  # id of input
+    description: 'Version part to bump'
+    required: true
+outputs:
+  version: # id of output
+    description: 'The LATEST version'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.bumpversion_part }}
+    - ${{ inputs.file_path }}
